@@ -1,0 +1,179 @@
+// Main SCSS for a-quiet-workspace.com
+// by Jacob Stordahl / jacobstordahl.net
+
+///////////////////////
+// Table of Contents //
+// 1. Modules        //
+// 2. General        //
+// 3. Layout         //
+// 4. Typography     //
+// 5. Geometry       //
+///////////////////////
+
+//Modules import
+  @use 'var';
+  @use 'mixin';
+
+//General
+  html, body{
+    @include mixin.reset;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+//Layout
+  #main-wrapper{
+    width:100vw;
+    height:100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+.wrap{
+  ul{
+    list-style-type: circle;
+    li{
+      padding:.5rem;
+      input{
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid gray;
+        color:gray;
+        @include mixin.font-stack;
+        font-size:var.$input;
+      }
+      input:focus{
+        background:transparent;
+        outline-style: hidden;
+        outline-color: var.$green;
+      }
+    }
+  }
+}
+#right{margin-left:-15rem;}
+.cont{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+//Typography
+h1, h2, h3, h4, h5, h6, p, a{
+  @include mixin.font-stack;
+  color:var.$green;
+  cursor: default;
+}
+#weather-degree{
+  cursor: pointer;
+}
+#time{
+  font-size:var.$large;
+  margin:0;
+}
+.weather{
+  font-size:var.$medium;
+  // margin-top:-1rem;
+}
+
+//Geometry
+.shape{
+  position:absolute;
+}
+
+#triangle {
+	position: absolute;
+	background-color: var.$tan;
+	text-align: left;
+  opacity:30%;
+}
+#triangle:before,
+#triangle:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+}
+#triangle,
+#triangle:before,
+#triangle:after {
+	width:  15em;
+	height: 15em;
+	border-top-right-radius: 30%;
+}
+
+#triangle {
+	transform: rotate(-34deg) skewX(-30deg) scale(1, 0.866) translate(-20rem, -37rem);
+}
+#triangle:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+#triangle:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}
+
+#square{
+  width:225px;
+  height:225px;
+  background-color: var.$green;
+  opacity: 30%;
+  border-radius: 30px;
+  transform: translate(35vw, 40vh) rotate(-21deg);
+}
+#circle-lg{
+  width:100vw;
+  height:100vw;
+  background-color: var.$brown;
+  opacity:30%;
+  border-radius: 50%;
+  transform: translate(-30vw, 70%);
+}
+#circle-sm{
+  width:40vw;
+  height:40vw;
+  background-color: var.$navy;
+  opacity:30%;
+  border-radius: 50%;
+  transform: translate(50vw, -31vw);
+}
+
+//Modal
+.modal{
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: 200ms ease-in-out;
+  background-color:var.$background;
+  border-radius: 30px;
+  z-index:10;
+  width:60vw;
+  height:30vh;
+  padding:2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-close{
+  transform: translate(-50%, -50%) scale(0);
+}
+.close-button{
+  align-self: flex-end;
+  transform: scale(2.5);
+  color: var.$navy;
+  background-color: transparent;
+  border:none;
+
+}
+.overlay{
+  position: fixed;
+  @include mixin.full-screen;
+  background-color: var.$navy;
+  opacity: 50%;
+  pointer-events: all;
+  transition: 200ms ease-in-out;
+}
+.overlay-close{
+  opacity: 0;
+  pointer-events: none;
+}

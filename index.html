@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- a-quiet-workspace.com
+    by Jacob Stordahl / jacobstordahl.net -->
+    <meta charset="utf-8">
+    <title>a quiet workspace</title>
+    <link rel="stylesheet" href="https://use.typekit.net/vyi1bub.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div id="main-wrapper">
+      <!-- Geometry -->
+      <div class="shape" id="triangle"></div>
+      <div class="shape" id="square"></div>
+      <div class="shape" id="circle-lg"></div>
+      <div class="shape" id="circle-sm"></div>
+
+        <div class="wrap" id="left">
+          <ul>
+            <li><input type="text" name="" value="" size="40"></li>
+            <li><input type="text" name="" value="" size="40"></li>
+            <li><input type="text" name="" value="" size="40"></li>
+            <li><input type="text" name="" value="" size="40"></li>
+            <li><input type="text" name="" value="" size="40"></li>
+            <li><input type="text" name="" value="" size="40"></li>
+          </ul>
+        </div>
+        <div class="wrap" id="right">
+            <h1 id="time"></h1>
+            <div class="cont">
+              <h3 class="weather" id="weather-desc"></h3>
+              <h3 class="weather" id="weather-amp"> & </h3>
+              <h3 class="weather" id="weather-int"></h3>
+              <h3 class="weather" id="weather-degree">f</h3>
+            </div>
+        </div>
+      </div>
+
+      <div class="modal" id="modal">
+        <button class="close-button">&times;</button>
+        <div class="modal-content">
+          <p><strong>a quiet workspace</strong> is a tool built for those who work at a computer, who find themselves writing short todo lists (wherever that may be)</p>
+          <p>keep track of simple tasks in the left column, but remember, when you refresh your list will disappear!</p>
+          <p><strong>a quiet workspace</strong> is meant to be used in a desktop browser window (1240px or larger)</p>
+        </div>
+      </div>
+      <div class="overlay"></div>
+
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

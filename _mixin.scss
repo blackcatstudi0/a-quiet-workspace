@@ -1,0 +1,24 @@
+// SCSS Variables for a-quiet-workspace.com
+// by Jacob Stordahl / jacobstordahl.net
+
+  //import variables
+  @use 'var';
+
+@mixin reset{
+  margin:0;
+  padding:0;
+  background-color: var.$background;
+}
+
+@mixin font-stack{
+  font-family: brother-1816, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+}
+
+@mixin full-screen{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
