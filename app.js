@@ -13,27 +13,24 @@ window.addEventListener('load', ()=> {
       hours = ("0" + hours).slice(-2);
       minutes = ("0" + minutes).slice(-2);
 
-      document.querySelector('#time').innerHTML =
+      document.getElementById('time').textContent =
         hours + ":" + minutes ;
-
-      // var t = setTimeout(clock, 500);
   }
   setInterval(clock, 1000);
 
 // Weather
   let long;
   let lat;
-  let weatherDesc = document.querySelector("#weather-desc");
-  let weatherInt = document.querySelector("#weather-int");
-  let weatherDegree = document.querySelector("#weather-degree");
+  let weatherDesc = document.getElementById('weather-desc');
+  let weatherInt = document.getElementById('weather-int');
+  let weatherDegree = document.getElementById('weather-degree');
 
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(position => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
 
-      const proxy = `https://cors-anywhere.herokuapp.com/`;
-      const api = `${proxy}https://api.darksky.net/forecast/f28f306b5341a009ca6aaa83c3060134/${lat},${long}`;
+      const api = `https://api.darksky.net/forecast/f28f306b5341a009ca6aaa83c3060134/${lat},${long}`;
 
       fetch(api)
         .then(response => {
