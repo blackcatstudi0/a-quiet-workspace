@@ -1,10 +1,14 @@
 // SRC JS for a-quiet-workspace.com
 // by Jacob Stordahl / jacobstordahl.net
+let time = document.getElementById('time')
+let weatherDegree = document.getElementById('weather-degree');
+let weatherDesc = document.getElementById('weather-desc');
+let weatherInt = document.getElementById('weather-int');
 
 window.addEventListener('load', ()=> {
 
 // Clock
-  function clock(){
+  const clock = () =>{
       const clock = new Date();
 
       let hours = clock.getHours();
@@ -13,7 +17,7 @@ window.addEventListener('load', ()=> {
       hours = ("0" + hours).slice(-2);
       minutes = ("0" + minutes).slice(-2);
 
-      document.getElementById('time').textContent =
+      time.textContent =
         hours + ":" + minutes ;
   }
   setInterval(clock, 1000);
@@ -21,9 +25,6 @@ window.addEventListener('load', ()=> {
 // Weather
   let long;
   let lat;
-  let weatherDesc = document.getElementById('weather-desc');
-  let weatherInt = document.getElementById('weather-int');
-  let weatherDegree = document.getElementById('weather-degree');
 
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(position => {
@@ -37,29 +38,32 @@ window.addEventListener('load', ()=> {
         .then(response => {
           return response.json();
         })
-        .then(data =>{
-          console.log(data)
-          const {temperature, summary} = data.currently;
-
-          //inject weather data
-          weatherInt.textContent = Math.round(temperature);
-          weatherDesc.textContent = summary;
-
+          .then(data =>{
+            // console.log(data) removed this console.log for deployment purposes. Shouldn't ever see this as a user 😄
+            const {temperature, summary} = data.currently;
+            //inject weather data
+            weatherInt.textContent = Math.round(temperature);
+            weatherDesc.textContent = summary;
             //formula for celsius
             let celsius = Math.round((temperature - 32) * (5 / 9));
-          //change f/c
-          weatherDegree.addEventListener('click', ()=>{
-            if (weatherDegree.textContent === "f"){
-              weatherDegree.textContent = "c";
-              weatherInt.textContent = celsius;
-            } else{
-              weatherDegree.textContent = "f";
-              weatherInt.textContent = Math.round(temperature);
-            }
+            //change f/c
+            weatherDegree.addEventListener('click', ()=>{
+              if (weatherDegree.textContent === "°f"){
+                weatherDegree.textContent = "°c";
+                weatherInt.textContent = ` ${celsius}`;
+              } else{
+                weatherDegree.textContent = "°f";
+                weatherInt.textContent = ` ${Math.round(temperature)}`;
+              }
+            })
           })
-        }
-      )
-    });
+          .catch(err => {
+              console.log("Error while formatting weather info: ", err)
+          })
+        .catch(err => {
+          console.log("Error while fetching API data: ", err)
+        });
+    })
   }
 
 //Modal
